@@ -1,0 +1,198 @@
+<footer id="footer" class="footer position-relative light-background">
+    <div class="container footer-top">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <span class="sitename">Fair Future</span>
+                </a>
+                <p style="color: black;">Your way to abroad studies</p>
+                <div class="footer-contact pt-3">
+                    <p style="color: black;"><strong>Toll-Free:</strong> <span>18004191210</span></p>
+                    <p style="color: black;"><strong>Phone:</strong> <span>+91 484 2356699, +91 7558 090 909</span></p>
+                    <p style="color: black;"><strong>Email:</strong> <span>info@fairfutureonline.com</span></p>
+                </div>
+                <div class="social-links d-flex mt-4">
+                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Events & News</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Assist</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Book a Webinar</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Discover Programs</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12 footer-newsletter">
+                <h4>Our Newsletter</h4>
+                <p>Subscribe to our newsletter for latest updates</p>
+                <form action="" method="post">
+                    <div class="newsletter-form">
+                        <input type="email" name="email" placeholder="Enter your email">
+                        <input type="submit" value="Subscribe">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Maps Section -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h3>Our Locations</h3>
+            </div>
+        </div>
+        <div class="row location-maps">
+            <% const locations = [
+                {
+                    name: "Head Office",
+                    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.338355892289!2d76.31631067479555!3d9.989144274113447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caa5844192!2sFair%20Future%20Studies%20Abroad%20%7C%20Overseas%20Education%20Consultants%20kerala%20%7C%20Study%20Abroad%20Consultants!5e0!3m2!1sen!2sin!4v1703125110104!5m2!1sen!2sin"
+                },
+                {
+                    name: "Trivandrum",
+                    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.2346112332444!2d76.95950157478443!3d8.559131793848315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb7c9cf7d227%3A0x5c2d22614db9c268!2sFair%20Future%20Studies%20Abroad-Trivandrum%20%7C%20Overseas%20Education%20Consultants%20%7C%20Study%20Abroad%20Consultants!5e0!3m2!1sen!2sin!4v1703125207159!5m2!1sen!2sin"
+                },
+                {
+                    name: "Thrissur",
+                    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.9597614583734!2d76.21419167479736!3d10.165838873930977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080e1db259cf73%3A0x7bca46b5b5763bd3!2sFair%20Future%20Thrissur%20%7C%20Study%20Abroad%20Consultants%20%7C%20Overseas%20Education%20Consultants!5e0!3m2!1sen!2sin!4v1703125243839!5m2!1sen!2sin"
+                },
+                {
+                    name: "Calicut",
+                    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.019090398976!2d75.77559067480774!3d11.258634453928891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65945efdf8e79%3A0x656707a5c2c6b2ee!2sFair%20Future%20Calicut%20%7C%20Study%20Abroad%20Consultants%20%7C%20Overseas%20Education%20Consultants!5e0!3m2!1sen!2sin!4v1703125277478!5m2!1sen!2sin"
+                }
+            ] %>
+
+            <% locations.forEach(location => { %>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="location-card">
+                        <h5 class="mb-3"><%= location.name %></h5>
+                        <div class="map-container">
+                            <iframe 
+                                src="<%= location.mapUrl %>" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+        <p style="color: black;">&copy; <span>Copyright</span> <strong class="px-1">RANDET</strong> <span>All Rights Reserved</span></p>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background-color: #F9F9F9;
+        color: #fff;
+        padding: 50px 0 20px;
+    }
+
+    .footer a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .location-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .map-container {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .newsletter-form input[type="email"] {
+        flex-grow: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .newsletter-form input[type="submit"] {
+        padding: 10px 20px;
+        background: #4a90e2;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .newsletter-form input[type="submit"]:hover {
+        background: #357abd;
+    }
+
+    .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+    }
+</style>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="user-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="user-assets/vendor/php-email-form/validate.js"></script>
+  <script src="user-assets/vendor/aos/aos.js"></script>
+  <script src="user-assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="user-assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="user-assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="user-assets/js/main.js"></script>
+
+</body>
+</html>

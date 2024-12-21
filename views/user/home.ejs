@@ -1,0 +1,682 @@
+<%- include("../partials/user/header.ejs") %>
+<style>
+  /* Process Flow Styles */
+  .process-flow {
+      padding: 2rem 0;
+  }
+
+  .process-step-wrapper {
+      flex: 1;
+      max-width: 200px;
+      z-index: 1;
+  }
+
+  .process-icon {
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 15px;
+      margin: 0 auto;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .process-step-number {
+      font-size: 0.9rem;
+      color: #0d6efd;
+  }
+
+  .process-title {
+      font-size: 1rem;
+      line-height: 1.4;
+  }
+
+  /* Updated Connector Line Styles */
+  .connector-line {
+      position: absolute;
+      top: 40px; /* Aligns with the center of the icon */
+      left: calc(100% - 10px);
+      width: calc(100% - 60px); /* Adjusted width */
+      height: 2px;
+      z-index: 0;
+  }
+
+  .line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #DDDDDD;
+      transform: translateY(-50%);
+  }
+
+  .arrow {
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-top: 3px solid #DDDDDD;
+      border-right: 3px solid #DDDDDD;
+      transform: translateY(-50%) rotate(45deg);
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+      .process-step-wrapper {
+          max-width: 100%;
+          margin-bottom: 2rem;
+      }
+
+      .connector-line {
+          display: none;
+      }
+  }
+</style>
+
+<style>
+  .logo-slider-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 20px 0;
+  }
+
+  .logo-track {
+      display: flex;
+      width: fit-content;
+  }
+
+  .logo-slide {
+      flex: 0 0 200px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .company-logo {
+      max-width: 150px;
+      height: auto;
+      /* filter: grayscale(50%); */
+      opacity: 0.7;
+      transition: all 0.3s ease;
+  }
+
+  .company-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+  }
+
+  @keyframes scroll {
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(-50%);
+      }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .logo-slide {
+          flex: 0 0 150px;
+      }
+      .company-logo {
+          max-width: 120px;
+      }
+  }
+</style>
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background" style="border-radius: 45px;">
+
+      <img src="user-assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+      <div class="container">
+        <h2 data-aos="fade-up" data-aos-delay="100">Shape Your Future, Beyond Borders<br></h2>
+        <p data-aos="fade-up" data-aos-delay="200">Kerala’s Best Study Abroad Consultancy</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="courses.html" class="btn-get-started">Get Started</a>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section class="py-5">
+      <div class="container">
+          <div class="row mb-5">
+              <div class="col-lg-5 mb-4 mb-lg-0">
+                  <h2 class="display-5 fw-bold text-primary">Fair Future<br>Process</h2>
+              </div>
+              <div class="col-lg-7">
+                  <p class="lead">
+                      We take care of all your requirements, just follow these 05 easy steps and you're done. Get a hassle-free experience without wasting time on lengthy forms. We also assist you with your VISA approvals and take care of travel & accommodation at any possible destination.
+                  </p>
+              </div>
+          </div>
+  
+          <div class="process-flow position-relative">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+                  <% 
+                  const steps = [
+                      {
+                          step: "01",
+                          icon: "user-assets/img/step1.svg",
+                          title: "Program/Institute",
+                          subtitle: "Selection",
+                          alt: "Program Selection"
+                      },
+                      {
+                          step: "02",
+                          icon: "user-assets/img/step2.svg",
+                          title: "Application",
+                          subtitle: "Processing",
+                          alt: "Application Processing"
+                      },
+                      {
+                          step: "03",
+                          icon: "user-assets/img/step3.svg",
+                          title: "Tuition Fee",
+                          subtitle: "Guidance",
+                          alt: "Tuition Fee Guidance"
+                      },
+                      {
+                          step: "04",
+                          icon: "user-assets/img/step4.svg",
+                          title: "Visa Applications &",
+                          subtitle: "Approvals",
+                          alt: "Visa Applications"
+                      },
+                      {
+                          step: "05",
+                          icon: "user-assets/img/step5.svg",
+                          title: "Travel &",
+                          subtitle: "Accommodation",
+                          alt: "Travel & Accommodation"
+                      }
+                  ];
+                  %>
+  
+                  <% steps.forEach((step, index) => { %>
+                      <div class="process-step-wrapper text-center position-relative">
+                          <!-- Step Icon -->
+                          <div class="process-icon mb-3">
+                              <img src="<%= step.icon %>" alt="<%= step.alt %>" class="img-fluid" style="width: 80px; height: 80px; object-fit: contain;">
+                          </div>
+                          
+                          <!-- Step Number -->
+                          <div class="process-step-number mb-2 text-primary fw-medium">
+                              STEP <%= step.step %>
+                          </div>
+                          
+                          <!-- Step Title -->
+                          <h5 class="process-title fw-medium text-dark">
+                              <%= step.title %><br><%= step.subtitle %>
+                          </h5>
+  
+                          <!-- Arrow (except for last item) -->
+                          <% if (index < steps.length - 1) { %>
+                              <div class="connector-line">
+                                  <div class="line"></div>
+                                  <div class="arrow"></div>
+                              </div>
+                          <% } %>
+                      </div>
+                  <% }); %>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+
+  <!-- Company Logo Slider Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Impacts & Collaborations</h2>
+        
+        <div class="logo-slider-container">
+            <div class="logo-track">
+                <% 
+                const logos = [
+                    { src: "https://fairfutureonline.com/img/hm-brand/abertay-university-logo-crop.png", alt: "Abertay University", url: "https://www.abertay.ac.uk/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/CBU_Logo_FULL_ORANGE-1-2.jpg", alt: "CBU", url: "https://www.cbu.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/CC_505_HORIZ-2.png", alt: "CC 505", url: "https://www.centennialcollege.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/Conestoga_College_logo.png", alt: "Conestoga College", url: "https://www.conestogac.on.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/Durham_College_logo.svg.png", alt: "Durham College", url: "https://durhamcollege.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/Georgian_International_logo_RGB-2.png", alt: "Georgian International", url: "https://www.georgiancollege.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/laurier.png", alt: "Laurier", url: "https://www.wlu.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/Memorial_University_of_Newfoundland_Logo.svg.png", alt: "Memorial University of Newfoundland", url: "https://www.mun.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/mohawk.png", alt: "Mohawk", url: "https://www.mohawkcollege.ca/" },
+                    { src: "https://fairfutureonline.com/img/hm-brand/MSVU-Logo.jpg", alt: "MSVU", url: "https://www.msvu.ca/" }
+                ];
+                %>
+
+                <% logos.forEach((logo, index) => { %>
+                    <div class="logo-slide" data-index="<%= index %>">
+                        <a href="<%= logo.url %>" target="_blank" rel="noopener noreferrer">
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>" class="company-logo">
+                        </a>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</section>
+  
+  <!-- /About Section -->
+
+    <!-- Counts Section -->
+    <section id="counts" class="section counts light-background">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="2" class="purecounter"></span>
+              <p>Students</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="2" class="purecounter"></span>
+              <p>Courses</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="2" class="purecounter"></span>
+              <p>Events</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="2" class="purecounter"></span>
+              <p>Trainers</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Counts Section -->
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section why-us">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-box">
+              <h3>Why Choose Our Products?</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Why Box -->
+
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="col-xl-4">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-clipboard-data"></i>
+                  <h4>Corporis voluptates officia eiusmod</h4>
+                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-gem"></i>
+                  <h4>Ullamco laboris ladore pan</h4>
+                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-inboxes"></i>
+                  <h4>Labore consequatur incidid dolore</h4>
+                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Why Us Section -->
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="features-item">
+              <i class="bi bi-eye" style="color: #ffbb2c;"></i>
+              <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="features-item">
+              <i class="bi bi-infinity" style="color: #5578ff;"></i>
+              <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="features-item">
+              <i class="bi bi-mortarboard" style="color: #e80368;"></i>
+              <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="features-item">
+              <i class="bi bi-nut" style="color: #e361ff;"></i>
+              <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="features-item">
+              <i class="bi bi-shuffle" style="color: #47aeff;"></i>
+              <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="features-item">
+              <i class="bi bi-star" style="color: #ffa76e;"></i>
+              <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
+            <div class="features-item">
+              <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
+              <h3><a href="" class="stretched-link">Midela Teren</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
+            <div class="features-item">
+              <i class="bi bi-camera-video" style="color: #4233ff;"></i>
+              <h3><a href="" class="stretched-link">Pira Neve</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
+            <div class="features-item">
+              <i class="bi bi-command" style="color: #b2904f;"></i>
+              <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
+            <div class="features-item">
+              <i class="bi bi-dribbble" style="color: #b20969;"></i>
+              <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
+            <div class="features-item">
+              <i class="bi bi-activity" style="color: #ff5828;"></i>
+              <h3><a href="" class="stretched-link">Verdo Park</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
+            <div class="features-item">
+              <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
+              <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
+            </div>
+          </div><!-- End Feature Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Courses</h2>
+        <p>Popular Courses</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="user-assets/img/course-1.jpg" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Web Development</p>
+                  <p class="price">$169</p>
+                </div>
+
+                <h3><a href="course-details.html">Website Design</a></h3>
+                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="user-assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Antonio</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="course-item">
+              <img src="user-assets/img/course-2.jpg" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Marketing</p>
+                  <p class="price">$250</p>
+                </div>
+
+                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
+                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="user-assets/img/trainers/trainer-2-2.jpg" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Lana</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;35
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="course-item">
+              <img src="user-assets/img/course-3.jpg" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Content</p>
+                  <p class="price">$180</p>
+                </div>
+
+                <h3><a href="course-details.html">Copywriting</a></h3>
+                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="user-assets/img/trainers/trainer-3-2.jpg" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Brandon</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;20
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Courses Section -->
+
+    <!-- Trainers Index Section -->
+    <section id="trainers-index" class="section trainers-index">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="user-assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Walter White</h4>
+                <span>Web Development</span>
+                <p>
+                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="user-assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Sarah Jhinson</h4>
+                <span>Marketing</span>
+                <p>
+                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="user-assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>William Anderson</h4>
+                <span>Content</span>
+                <p>
+                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Trainers Index Section -->
+
+  </main>
+
+  <!-- footer partial -->
+
+  <%- include("../partials/user/footer.ejs") %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.logo-track');
+        const slides = track.querySelectorAll('.logo-slide');
+        
+        // Clone the slides
+        slides.forEach(slide => {
+            const clone = slide.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        // Set the animation
+        const slideWidth = slides[0].offsetWidth;
+        const trackWidth = slideWidth * slides.length;
+        track.style.width = `${trackWidth * 2}px`; // Double the width for cloned slides
+        
+        // Set animation properties
+        track.style.animation = `scroll ${slides.length * 5}s linear infinite`;
+
+        // Pause animation on hover
+        track.addEventListener('mouseenter', () => {
+            track.style.animationPlayState = 'paused';
+        });
+        track.addEventListener('mouseleave', () => {
+            track.style.animationPlayState = 'running';
+        });
+
+        // Optional: Pause animation when not in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    track.style.animationPlayState = 'running';
+                } else {
+                    track.style.animationPlayState = 'paused';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.logo-slider-container'));
+    });
+</script>
