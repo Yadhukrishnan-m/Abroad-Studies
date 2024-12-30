@@ -5,7 +5,6 @@ const FormSubmit = async(req,res) =>{
     try {
 
         const { name, email, phone, city, qualification } = req.body;
-        console.log(req.body)
 
         const consultation = new Consultation({
             name,
