@@ -1,0 +1,68 @@
+<%- include("../partials/admin/header.ejs") %>
+
+<body>
+    <div class="screen-overlay"></div>
+    <%- include("../partials/admin/sidepannel.ejs") %>
+    <main class="main-wrap">
+        <section class="content-main">
+            <!-- Date Range Filter Form -->
+            <div class="mb-4">
+                <form method="GET" action="/admin/userData" class="d-flex align-items-center">
+                    <label for="startDate" class="mr-2">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control mr-3" style="max-width: 200px;">
+                    
+                    <label for="endDate" class="mr-2">End Date:</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control mr-3" style="max-width: 200px;">
+                    
+                    <button type="submit" class="btn btn-primary mr-3">Filter</button>
+                </form>
+                
+                <!-- Separate the "Download Excel" form from the "Filter" form -->
+                <form method="POST" action="/admin/downloadUserData" class="d-inline mt-3">
+                    <input type="hidden" name="startDate" value="<%= startDate %>">
+                    <input type="hidden" name="endDate" value="<%= endDate %>">
+                    <button type="submit" class="btn btn-primary">Download Excel</button>
+                </form>
+            </div>
+            
+            
+
+            <!-- User Data Table -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body mb-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>City</th>
+                                    <th>Qualification</th>
+                                    <th>Registration Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% userDetails.forEach(user => { %>
+                                    <tr>
+                                        <td><%= user.name %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.phone %></td>
+                                        <td><%= user.city %></td>
+                                        <td><%= user.qualification %></td>
+                                        <td><%= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss') %></td>
+                                        <td><%= moment(user.createdAt).format('hh:mm A') %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../partials/admin/footer.ejs") %>
+</body>
+</html>

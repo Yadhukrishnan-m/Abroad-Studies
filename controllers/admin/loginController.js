@@ -42,11 +42,29 @@ const loadLogin = async (req, res) => {
     }
   };
 
+  const logout = (req, res) => {
+    try {
+        // Destroy the session (logs the user out)
+        req.session.destroy((err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send('Error while logging out');
+            }
+            
+            // Redirect to the admin page after logging out
+            res.redirect('/admin/');
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('An error occurred while logging out');
+    }
+};
 
 
   module.exports={
 loadLogin,
-verifyAdmin
+verifyAdmin,
+logout
   }
 
 
