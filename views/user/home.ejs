@@ -131,6 +131,234 @@
       }
   }
 </style>
+
+
+
+<style>
+  .modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: #fff;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    transform: scale(0.7);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .modal.show .modal-content {
+    transform: scale(1);
+  }
+  
+  .close-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .close-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    min-height: 600px;
+  }
+  
+  .modal-banner {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .modal-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/path-to-your-pattern.png') center/cover;
+    opacity: 0.1;
+  }
+  
+  .banner-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .banner-content h3 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .banner-content p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+  
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .benefits-list li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .modal-form {
+    padding: 40px;
+  }
+  
+  .modal-form h2 {
+    color: #1a237e;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .form-subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+  
+  .consultation-form {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
+  }
+  
+  .form-input:focus {
+    border-color: #1a237e;
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+    outline: none;
+  }
+  
+  .form-label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 4px;
+    color: #666;
+    transition: all 0.2s;
+    pointer-events: none;
+  }
+  
+  .form-input:focus ~ .form-label,
+  .form-input:not(:placeholder-shown) ~ .form-label {
+    top: 0;
+    font-size: 14px;
+    color: #1a237e;
+  }
+  
+  .submit-button {
+    background: #1a237e;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+  }
+  
+  .recaptcha-container {
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .modal-banner {
+      padding: 30px;
+      min-height: auto;
+    }
+  
+    .modal-form {
+      padding: 30px;
+    }
+  
+    .benefits-list {
+      display: none;
+    }
+  }
+  </style>
+  
   <main class="main">
 
     <!-- Hero Section -->
@@ -328,10 +556,18 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="why-box">
-              <h3>Why Choose Our Products?</h3>
+              <h3>Why Choose Our Study Abroad Services?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+               *  Assistance with university applications
+              </p>
+              <p>
+               *  Guidance on visa and immigration processes
+              </p>
+              <p>
+               *  Scholarship opportunities
+              </p>
+              <p>
+               *  Support for international students
               </p>
               <div class="text-center">
                 <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
@@ -344,25 +580,31 @@
 
               <div class="col-xl-4">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-clipboard-data"></i>
-                  <h4>Corporis voluptates officia eiusmod</h4>
-                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                  <!-- <i class="bi bi-clipboard-data"></i> -->
+                  <!-- <i class="bi bi-mortarboard"></i> -->
+                  <i class="bi bi-person-workspace"></i>
+                  <!-- <i class="bi bi-book"></i> -->
+                  <h4>Expert Counseling</h4>
+                  <p>Get personalized guidance to select the best universities and programs for your future.</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-gem"></i>
-                  <h4>Ullamco laboris ladore pan</h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                  <!-- <i class="bi bi-gem"></i> -->
+                  <!-- <i class="bi bi-passport"></i> -->
+                  <i class="bi bi-airplane"></i>
+                  <h4>Visa Assistance</h4>
+                  <p>Our experts will help you navigate the visa application process smoothly</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-inboxes"></i>
-                  <h4>Labore consequatur incidid dolore</h4>
-                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <!-- <i class="bi bi-inboxes"></i> -->
+                  <i class="bi bi-mortarboard-fill"></i>
+                  <h4>Scholarship Guidance</h4>
+                  <p>Learn about scholarship opportunities and how to secure funding for your studies.</p>
                 </div>
               </div><!-- End Icon Box -->
 
@@ -384,85 +626,98 @@
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="features-item">
-              <i class="bi bi-eye" style="color: #ffbb2c;"></i>
-              <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
+              <!-- <i class="bi bi-eye" style="color: #ffbb2c;"></i> -->
+              <i class="bi bi-clipboard-check" style="color: #ffbb2c;"></i>
+              <h3><a href="" class="stretched-link">Application Support</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="features-item">
-              <i class="bi bi-infinity" style="color: #5578ff;"></i>
-              <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
+              <!-- <i class="bi bi-infinity" style="color: #5578ff;"></i> -->
+              <i class="bi bi-book-half" style="color: #5578ff;"></i>
+              <h3><a href="" class="stretched-link">Top University Partnerships</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="features-item">
-              <i class="bi bi-mortarboard" style="color: #e80368;"></i>
-              <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
+              <!-- <i class="bi bi-mortarboard" style="color: #e80368;"></i> -->
+              <i class="bi bi-airplane" style="color: #e80368;"></i>
+              <h3><a href="" class="stretched-link">Pre-Departure Training</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
             <div class="features-item">
-              <i class="bi bi-nut" style="color: #e361ff;"></i>
-              <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
+              <!-- <i class="bi bi-nut" style="color: #e361ff;"></i> -->
+              <i class="bi bi-chat-dots" style="color: #e361ff;"></i>
+              <h3><a href="" class="stretched-link">Language Training</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
             <div class="features-item">
-              <i class="bi bi-shuffle" style="color: #47aeff;"></i>
-              <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
+              <!-- <i class="bi bi-shuffle" style="color: #47aeff;"></i> -->
+              <i class="bi bi-house-door" style="color: #47aeff;"></i>
+              <h3><a href="" class="stretched-link">Accommodation Assistance</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
             <div class="features-item">
-              <i class="bi bi-star" style="color: #ffa76e;"></i>
-              <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
+              <!-- <i class="bi bi-star" style="color: #ffa76e;"></i> -->
+              <i class="bi bi-briefcase" style="color: #ffa76e;"></i>
+              <h3><a href="" class="stretched-link">Career Counseling</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
             <div class="features-item">
-              <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
-              <h3><a href="" class="stretched-link">Midela Teren</a></h3>
+              <!-- <i class="bi bi-x-diamond" style="color: #11dbcf;"></i> -->
+              <i class="bi bi-globe" style="color: #11dbcf;"></i>
+              <h3><a href="" class="stretched-link">Cultural Orientation</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
             <div class="features-item">
-              <i class="bi bi-camera-video" style="color: #4233ff;"></i>
-              <h3><a href="" class="stretched-link">Pira Neve</a></h3>
+              <!-- <i class="bi bi-camera-video" style="color: #4233ff;"></i> -->
+              <i class="bi bi-umbrella" style="color: #4233ff;"></i>
+              <h3><a href="" class="stretched-link">Travel Insurance</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
             <div class="features-item">
-              <i class="bi bi-command" style="color: #b2904f;"></i>
-              <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
+              <!-- <i class="bi bi-command" style="color: #b2904f;"></i> -->
+              <i class="bi bi-shield-plus" style="color: #b2904f;"></i>
+              <h3><a href="" class="stretched-link">Health Insurance Assistance</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
             <div class="features-item">
-              <i class="bi bi-dribbble" style="color: #b20969;"></i>
-              <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
+              <!-- <i class="bi bi-dribbble" style="color: #b20969;"></i> -->
+              <i class="bi bi-wallet2" style="color: #b20969;"></i>
+              <h3><a href="" class="stretched-link">Financial Planning</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
             <div class="features-item">
-              <i class="bi bi-activity" style="color: #ff5828;"></i>
-              <h3><a href="" class="stretched-link">Verdo Park</a></h3>
+              <!-- <i class="bi bi-activity" style="color: #ff5828;"></i> -->
+              <i class="bi bi-briefcase" style="color: #ff5828;"></i>
+              <h3><a href="" class="stretched-link">Part-Time Job Assistance
+              </a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
             <div class="features-item">
-              <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
-              <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
+              <!-- <i class="bi bi-brightness-high" style="color: #29cc61;"></i> -->
+              <i class="bi bi-mortarboard" style="color: #29cc61;"></i>
+              <h3><a href="" class="stretched-link">Post-Graduation Support</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
@@ -636,6 +891,99 @@
         </div>
 
       </div>
+      !-- Add this right after your opening <body> tag -->
+        <div id="consultationModal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <button class="close-button" aria-label="Close modal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"></path>
+              </svg>
+            </button>
+            
+            <div class="modal-grid">
+              <!-- Left side - Image/Banner -->
+              <div class="modal-banner">
+                <div class="banner-content">
+                  <h3>Start Your Journey</h3>
+                  <p>Get expert guidance for your international education</p>
+                  <ul class="benefits-list">
+                    <li>✓ Free Consultation</li>
+                    <li>✓ Expert Counseling</li>
+                    <li>✓ Visa Assistance</li>
+                    <li>✓ University Selection</li>
+                  </ul>
+                </div>
+              </div>
+        
+              <!-- Right side - Form -->
+              <div class="modal-form">
+                <h2>Book a free consultation</h2>
+                <p class="form-subtitle">Fill in your details and we'll get back to you shortly</p>
+                
+                <form id="consultationForm" class="consultation-form">
+                  <div class="form-group">
+                    <input type="text" id="name" name="name" required class="form-input">
+                    <label for="name" class="form-label">Full Name</label>
+                  </div>
+        
+                  <div class="form-group">
+                    <input type="email" id="email" name="email" required class="form-input">
+                    <label for="email" class="form-label">Email Address</label>
+                  </div>
+        
+                  <div class="form-group">
+                    <input type="tel" id="phone" name="phone" required class="form-input">
+                    <label for="phone" class="form-label">Phone Number</label>
+                  </div>
+        
+                  <div class="form-group">
+                    <input type="text" id="city" name="city" required class="form-input">
+                    <label for="city" class="form-label">City</label>
+                  </div>
+        
+                  <div class="form-group">
+                    <input type="text" id="qualification" name="qualification" required class="form-input">
+                    <label for="qualification" class="form-label">Highest Qualification</label>
+                  </div>
+        
+                  <div class="form-group recaptcha-container">
+                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                  </div>
+        
+                  <button type="submit" class="submit-button">
+                    <span>Book Consultation</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+<button id="myBtn">Open Modal</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <h2>Modal Header</h2>
+    <p>Some text in the Modal..</p>
+    <button onclick="document.getElementById('myModal').classList.remove('show');">Close</button>
+  </div>
+</div>
+
+<!-- Add this new modal for success message -->
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <h2>Thank You!</h2>
+    <p>Your consultation request has been submitted successfully. We'll get back to you shortly.</p>
+    <button onclick="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
+        
 
     </section><!-- /Trainers Index Section -->
 
@@ -685,3 +1033,108 @@
         observer.observe(document.querySelector('.logo-slider-container'));
     });
 </script>
+
+
+
+
+<!-- Add this script before closing </body> tag -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('consultationModal');
+      
+      
+      // Show modal after 10 seconds
+      setTimeout(function() {
+          modal.style.display = 'flex';
+          // Add a small delay before adding the 'show' class for the animation
+          setTimeout(() => modal.classList.add('show'), 1);
+      }, 3000);
+  
+      // Close modal function
+      function closeModal() {
+          modal.classList.remove('show');
+          setTimeout(() => modal.style.display = 'none', 300);
+      }
+  
+      // Close modal when clicking the close button
+      document.querySelector('.close-button').onclick = closeModal;
+  
+      // Close modal when clicking outside
+      modal.onclick = function(event) {
+          if (event.target === modal) {
+              closeModal();
+          }
+      }
+  
+      // Prevent closing when clicking modal content
+      modal.querySelector('.modal-content').onclick = function(event) {
+          event.stopPropagation();
+      }
+  
+      // Form handling
+      const form = document.getElementById('consultationForm');
+      const inputs = form.querySelectorAll('.form-input');
+  
+      // Add floating label effect
+      inputs.forEach(input => {
+          // Set initial state
+          if (input.value) {
+              input.classList.add('has-value');
+          }
+  
+          input.addEventListener('focus', () => {
+              input.classList.add('has-value');
+          });
+  
+          input.addEventListener('blur', () => {
+              if (!input.value) {
+                  input.classList.remove('has-value');
+              }
+          });
+      });
+  
+      // Handle form submission
+      form.onsubmit = async function(e) {
+        e.preventDefault();
+        
+        try {
+            // Create an object with form data
+            const formData = {
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                city: form.city.value,
+                qualification: form.qualification.value
+            };
+
+            // Send data to backend
+            const response = await fetch('/api/consultation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit form');
+            }
+
+            const result = await response.json();
+            
+            // Show success message
+            alert('Thank you! Your consultation request has been submitted successfully.');
+            
+            // Close modal
+            closeModal();
+            
+            // Optional: Reset form
+            form.reset();
+            
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Sorry, there was an error submitting your request. Please try again.');
+        }
+      }
+  });
+  </script>
