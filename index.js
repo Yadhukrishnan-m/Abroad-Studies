@@ -1,14 +1,18 @@
 const express=require('express');
 const app=express();
+const dotenv = require("dotenv");
+dotenv.config();
 
+const db=require('./config/dbConfig')
+   db();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
 app.use(express.static('public'));
 
-// const adminRoute = require('./routes/adminRoute');
-// app.use('/admin',adminRoute)
+const adminRoute = require('./routes/adminRoute');
+app.use('/admin',adminRoute)
 
 
 

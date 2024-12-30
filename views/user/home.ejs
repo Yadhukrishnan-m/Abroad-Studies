@@ -136,7 +136,12 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background" style="border-radius: 45px;">
 
-      <img src="user-assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <!-- <img src="user-assets/img/hero-bg.jpg" alt="" data-aos="fade-in"> -->
+      <% if (banner) { %> 
+        <img src="/<%= banner.banner %>" alt="Uploaded Banner" class="img-fluid">
+    <% } else { %> 
+        <p>No banner uploaded yet.</p>
+    <% } %>
 
       <div class="container">
         <h2 data-aos="fade-up" data-aos-delay="100">Shape Your Future, Beyond Borders<br></h2>

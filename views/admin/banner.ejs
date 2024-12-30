@@ -1,0 +1,153 @@
+<%- include("../partials/admin/header.ejs") %>
+<body>
+    <div class="screen-overlay"></div>
+    <%- include("../partials/admin/sidepannel.ejs") %>
+    
+    <main class="main-wrap">
+        <div class="container mt-5">
+            <!-- Banner Management Section -->
+            <div class="row">
+                <!-- Banner Upload Section -->
+                <div class="col-12 col-md-6">
+                    <h2 class="section-title">Manage Banner</h2>
+                    <form id="bannerForm" class="banner-form" method="POST" action="/admin/banner" enctype="multipart/form-data">
+                        <!-- File Upload Input -->
+                        <div class="form-group">
+                            <label for="bannerUpload" class="form-label">Upload Banner Image</label>
+                            <input type="file" class="form-control" id="bannerUpload" name="bannerUpload" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">Upload Banner</button>
+                    </form>
+                </div>
+                <!-- Display Uploaded Banner (optional, removed preview section as per request) -->
+                <div class="col-12 col-md-6">
+                    <h2 class="section-title">Uploaded Banner</h2>
+                    <div id="bannerPreview" class="mt-3">
+                        <% if (banner) { %> 
+                            <img src="/<%= banner.banner %>" alt="Uploaded Banner" class="img-fluid">
+                        <% } else { %> 
+                            <p>No banner uploaded yet.</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include("../partials/admin/footer.ejs") %>
+
+    <!-- JavaScript to handle form submission validation -->
+    <script>
+        // Prevent form submission if no file is selected
+        document.getElementById("bannerForm").addEventListener("submit", function(event) {
+            const fileInput = document.getElementById("bannerUpload");
+            
+            // Check if no file is selected
+            if (!fileInput.files.length) {
+                event.preventDefault(); // Prevent form submission
+                // alert("Please select a file to upload.");
+            }
+        });
+    </script>
+
+    <!-- Custom CSS for Standard Design -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-wrap {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #343a40;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .banner-form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .submit-btn:disabled {
+            background-color: #c6c8ca;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .col-md-6 {
+                margin-bottom: 20px;
+            }
+
+            .banner-form {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .submit-btn {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>
