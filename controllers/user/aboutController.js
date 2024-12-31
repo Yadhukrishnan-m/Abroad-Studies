@@ -1,8 +1,11 @@
-
+const Banner=require('../../models/banner')
 const getAbout = async(req,res) =>{
     try {
+   let  banner=await Banner.findOne()
 
-        return res.render('about')
+     
+
+        return res.render('about',{banner})
         
     } catch (error) {
         res.status(404)

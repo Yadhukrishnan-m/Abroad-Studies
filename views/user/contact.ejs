@@ -1,0 +1,261 @@
+<%- include("../partials/user/header.ejs") %>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>About - Mentor Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="user-assets/img/favicon.png" rel="icon">
+  <link href="user-assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="user-assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="user-assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="user-assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="user-assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="user-assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="user-assets/css/main.css" rel="stylesheet">
+
+
+</head>
+
+<body class="about-page">
+
+  
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div  data-aos="fade">
+      <section id="hero" class="hero section dark-background" style="border-radius: 45px;">
+        <% if (banner) { %> 
+          <img src="/<%= banner.banner %>" alt="Uploaded Banner" class="img-fluid">
+        <% } else { %> 
+          <p>No banner uploaded yet.</p>
+        <% } %>
+    
+        <div class="container">
+          <h2 data-aos="fade-up" data-aos-delay="100">Contact Us</h2>
+          <p data-aos="fade-up" data-aos-delay="200">Get in touch with us to start your journey of studying abroad. Our expert team is ready to assist you with all your questions and guide you through the process.</p><p></p>
+
+          <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+            <!-- <a href="about.html" class="btn-get-started">Learn More</a> -->
+          </div>
+        </div>
+        
+      </section> 
+      <!-- <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li class="current">About Us<br></li>
+          </ol>
+        </div>
+      </nav> -->
+    </div><!-- End Page Title -->
+
+  
+
+    <div class="container py-5">
+        <div class="container-fluid p-0 rounded-5 shadow-lg overflow-hidden mx-4">
+          <div class="row g-0">
+            <!-- Left Column -->
+            <div class="col-md-5 bg-primary text-white p-5">
+                <p class="lead mb-5" style="font-size: 2rem; font-weight: bold;">Start Your Journey</p>
+
+              <p class="lead mb-5">Get expert guidance for your international education</p>
+              
+              <div class="features">
+                <p class="mb-3">
+                  <i class="bi bi-check2"></i> Free Consultation
+                </p>
+                <p class="mb-3">
+                  <i class="bi bi-check2"></i> Expert Counseling
+                </p>
+                <p class="mb-3">
+                  <i class="bi bi-check2"></i> Visa Assistance
+                </p>
+                <p class="mb-3">
+                  <i class="bi bi-check2"></i> University Selection
+                </p>
+              </div>
+            </div>
+      
+            <!-- Right Column -->
+            <div class="col-md-7 p-5">
+
+            
+                    <h2 class="text-primary mb-4">Book a free consultation</h2>
+                
+                              
+              <p class="text-muted mb-4">Fill in your details and we'll get back to you shortly</p>
+      
+              <form action="/contact" method="POST" id="consultationForm">
+                <div class="mb-3">
+                  <label for="fullName" class="form-label text-primary">Full Name</label>
+                  <input type="text" class="form-control" id="fullName" name="name" required>
+                  <span id="fullNameError" class="text-danger" style="display: none;">Full Name is required.</span>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="email" class="form-label text-primary">Email Address</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                  <span id="emailError" class="text-danger" style="display: none;">Please enter a valid Email address.</span>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="phone" class="form-label text-primary">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" required>
+                  <span id="phoneError" class="text-danger" style="display: none;">Please enter a valid 10-digit Phone number.</span>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="city" class="form-label text-primary">City</label>
+                  <input type="text" class="form-control" id="city" name="city" required>
+                  <span id="cityError" class="text-danger" style="display: none;">City is required.</span>
+                </div>
+              
+                <div class="mb-4">
+                  <label for="qualification" class="form-label text-primary">Highest Qualification</label>
+                  <input type="text" class="form-control" id="qualification" name="qualification" required>
+                  <span id="qualificationError" class="text-danger" style="display: none;">Highest Qualification is required.</span>
+                </div>
+              
+                <button type="submit" class="btn btn-primary w-100 py-3">
+                  Book Consultation <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add these in your head section -->
+      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"> -->
+      
+      <style>
+        .bg-primary {
+          background-color: #1e2b7b !important;
+        }
+        .text-primary {
+          color: #1e2b7b !important;
+        }
+        .btn-primary {
+          background-color: #1e2b7b !important;
+          border-color: #1e2b7b !important;
+        }
+        .form-control {
+          padding: 0.75rem 1rem;
+        }
+        .form-label {
+          font-weight: 500;
+        } 
+       .rounded-5 {
+          border-radius: 50px !important;
+        }
+        @media (max-width: 768px) {
+          .container-fluid {
+            margin: 0 !important;
+          }
+          .rounded-5 {
+            border-radius: 0 !important;
+          }
+        } 
+      </style>
+
+
+
+
+
+ 
+  </main>
+  <%- include("../partials/user/footer.ejs") %>
+
+  <script>
+    // Function to validate the form
+    function validateForm(event) {
+      // Get form elements
+      const fullName = document.getElementById('fullName');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const city = document.getElementById('city');
+      const qualification = document.getElementById('qualification');
+    
+      // Regular expressions for validation
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      const phoneRegex = /^[0-9]{10}$/; // Basic validation for 10-digit phone number
+    
+      // Reset error messages
+      document.getElementById('fullNameError').style.display = "none";
+      document.getElementById('emailError').style.display = "none";
+      document.getElementById('phoneError').style.display = "none";
+      document.getElementById('cityError').style.display = "none";
+      document.getElementById('qualificationError').style.display = "none";
+  
+      // Validate Full Name (non-empty)
+      if (fullName.value.trim() === "") {
+        document.getElementById('fullNameError').style.display = "inline";
+        fullName.focus();
+        event.preventDefault(); // Prevent form submission
+        return false;
+      }
+    
+      // Validate Email (non-empty and proper format)
+      if (!emailRegex.test(email.value.trim())) {
+        document.getElementById('emailError').style.display = "inline";
+        email.focus();
+        event.preventDefault();
+        return false;
+      }
+    
+      // Validate Phone (non-empty and 10 digits)
+      if (!phoneRegex.test(phone.value.trim())) {
+        document.getElementById('phoneError').style.display = "inline";
+        phone.focus();
+        event.preventDefault();
+        return false;
+      }
+    
+      // Validate City (non-empty)
+      if (city.value.trim() === "") {
+        document.getElementById('cityError').style.display = "inline";
+        city.focus();
+        event.preventDefault();
+        return false;
+      }
+    
+      // Validate Qualification (non-empty)
+      if (qualification.value.trim() === "") {
+        document.getElementById('qualificationError').style.display = "inline";
+        qualification.focus();
+        event.preventDefault();
+        return false;
+      }
+    
+      // If all validations pass, return true to submit the form
+      return true;
+    }
+    
+    // Attach the validation function to the form submission
+    const form = document.getElementById('consultationForm');
+    form.addEventListener('submit', validateForm);
+  </script>
+  
+  
+
+</body>
+
+</html>

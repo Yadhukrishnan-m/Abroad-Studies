@@ -4,114 +4,189 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="heading">
+    <div  data-aos="fade">
+      <section id="hero" class="hero section dark-background" style="border-radius: 45px;">
+        <% if (banner) { %> 
+          <img src="/<%= banner.banner %>" alt="Uploaded Banner" class="img-fluid">
+        <% } else { %> 
+          <p>No banner uploaded yet.</p>
+        <% } %>
+    
         <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Courses</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
+          <h2 data-aos="fade-up" data-aos-delay="100">Courses</h2>
+          <p data-aos="fade-up" data-aos-delay="200">Explore a variety of courses tailored to help you achieve your dream of studying abroad.</p>
+          <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+            <a href="contact.html" class="btn-get-started">Contact Us</a>
           </div>
         </div>
-      </div>
-      <nav class="breadcrumbs">
+        
+      </section>  
+ 
+      
+      <!-- <nav class="breadcrumbs">
         <div class="container">
           <ol>
             <li><a href="index.html">Home</a></li>
             <li class="current">Courses</li>
           </ol>
         </div>
-      </nav>
+      </nav> -->
     </div><!-- End Page Title -->
 
     <!-- Courses Section -->
     <section id="courses" class="courses section">
 
       <div class="container">
-
         <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="/user-assets/img/course-1.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="course-details.html">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="/user-assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+          <div class="container py-5">
+            <div class="row g-4">
+              <% courses.forEach(course => { %>
+                <div class="col-lg-4 col-md-6">
+                  <div class="course-card">
+                    <div class="course-image-wrapper">
+                      <img src="<%= course.image %>" class="course-image" alt="<%= course.course %>">
+                      <!-- <div class="course-overlay">
+                        <span class="course-category">Category</span>
+                      </div> -->
+                    </div>
+                    <div class="course-content">
+                      <h3 class="course-title"><%= course.course %></h3>
+                      <p class="course-description"><%= course.description || 'No description available' %></p>
+                      <div class="course-meta">
+                        <!-- <span class="course-duration"><i class="bi bi-clock"></i> 8 weeks</span>
+                        <span class="course-level"><i class="bi bi-bar-chart"></i> Beginner</span> -->
+                      </div>
+                      <a href="#" class="btn btn-primary course-btn">Learn with Randet</a>
+                    </div>
                   </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
                 </div>
-              </div>
+              <% }); %>
             </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="/user-assets/img/course-2.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="/user-assets/img/trainers/trainer-2-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="course-item">
-              <img src="/user-assets/img/course-3.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Content</p>
-                  <p class="price">$180</p>
-                </div>
-
-                <h3><a href="course-details.html">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="/user-assets/img/trainers/trainer-3-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;20
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
+          </div>
+          
+          <style>
+            .course-card {
+              background-color: #ffffff;
+              border-radius: 20px;
+              overflow: hidden;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+              transition: all 0.3s ease;
+            }
+          
+            .course-card:hover {
+              transform: translateY(-10px);
+              box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+          
+            .course-image-wrapper {
+              position: relative;
+              overflow: hidden;
+              padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            }
+          
+            .course-image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.5s ease;
+            }
+          
+            .course-card:hover .course-image {
+              transform: scale(1.1);
+            }
+          
+            .course-overlay {
+              position: absolute;
+              top: 20px;
+              left: 20px;
+              background-color: rgba(255, 255, 255, 0.9);
+              padding: 8px 16px;
+              border-radius: 30px;
+            }
+          
+            .course-category {
+              font-size: 0.9rem;
+              font-weight: 600;
+              color: #1e2b7b;
+              text-transform: uppercase;
+            }
+          
+            .course-content {
+              padding: 25px;
+            }
+          
+            .course-title {
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: #1e2b7b;
+              margin-bottom: 15px;
+              transition: color 0.3s ease;
+            }
+          
+            .course-card:hover .course-title {
+              color: #ff6f61;
+            }
+          
+            .course-description {
+              font-size: 1rem;
+              color: #555;
+              margin-bottom: 20px;
+              line-height: 1.6;
+            }
+          
+            .course-meta {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 20px;
+              font-size: 0.9rem;
+              color: #777;
+            }
+          
+            .course-duration, .course-level {
+              display: flex;
+              align-items: center;
+            }
+          
+            .course-duration i, .course-level i {
+              margin-right: 5px;
+            }
+          
+            .course-btn {
+              width: 100%;
+              padding: 12px;
+              font-weight: 600;
+              text-transform: uppercase;
+              border-radius: 30px;
+              transition: all 0.3s ease;
+            }
+          
+            .course-btn:hover {
+              background-color: #ff6f61;
+              border-color: #ff6f61;
+            }
+          
+            @media (max-width: 768px) {
+              .course-title {
+                font-size: 1.3rem;
+              }
+          
+              .course-description {
+                font-size: 0.9rem;
+              }
+          
+              .course-meta {
+                flex-direction: column;
+                gap: 10px;
+              }
+            }
+          </style>
+        
+          
+       
         </div>
-
       </div>
 
 
@@ -134,7 +209,7 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="destination-item">
-            <img src="/user-assets/img/destinations/uk.jpg" alt="UK" class="img-fluid">
+            <img src="/user-assets/img/destinations/uk.jpeg" alt="UK" class="img-fluid">
             <div class="destination-content">
               <h3>United Kingdom</h3>
               <p>Rich history meets cutting-edge education in the heart of Europe.</p>
@@ -144,7 +219,7 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="destination-item">
-            <img src="/user-assets/img/destinations/canada.jpeg" alt="Canada" class="img-fluid">
+            <img src="/user-assets/img/destinations/caneda.jpeg" alt="Canada" class="img-fluid">
             <div class="destination-content">
               <h3>Canada</h3>
               <p>High-quality education in a safe and multicultural environment.</p>
@@ -154,7 +229,7 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="destination-item">
-            <img src="/user-assets/img/destinations/australia.tree" alt="Australia" class="img-fluid">
+            <img src="/user-assets/img/destinations/austrelia.jpeg" alt="Australia" class="img-fluid">
             <div class="destination-content">
               <h3>Australia</h3>
               <p>World-class education with unique wildlife and natural wonders.</p>
@@ -179,7 +254,7 @@
           <p>Get personalized guidance from our expert counselors to find the perfect study abroad program for you.</p>
         </div>
         <div class="col-lg-3 cta-btn-container text-center">
-          <a class="cta-btn align-middle" href="#" data-bs-toggle="modal" data-bs-target="#consultationModal">Book a Free Consultation</a>
+          <a class="cta-btn align-middle" href="/contact" data-bs-toggle="modal" data-bs-target="#consultationModal">Book a Free Consultation</a>
         </div>
       </div>
     </div>

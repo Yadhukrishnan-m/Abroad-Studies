@@ -11,7 +11,7 @@ const About = require('../controllers/user/aboutController');
 const Courses = require('../controllers/user/coursesController');
 const Consultation = require('../controllers/user/consultationFormController');
 const Country = require('../controllers/user/countryController');
-
+const contactController=require('../controllers/user/contactController')
 user_route.get("/",home.home)
 user_route.get('/about',About.getAbout);
 user_route.get('/courses',Courses.getCourses);
@@ -21,7 +21,8 @@ user_route.get('/australia',Country.australia);
 user_route.get('/france',Country.france);
 user_route.get('/ireland',Country.ireland);
 user_route.get('/uk',Country.uk);
-
+user_route.get('/contact',contactController.loadContact);
+user_route.post('/contact',contactController.FormSubmit);
 
 user_route.get('*',function(req,res){
     res.render('page-404');         
