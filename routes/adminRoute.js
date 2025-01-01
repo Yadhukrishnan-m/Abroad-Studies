@@ -2,8 +2,8 @@ const express=require('express');
 const session=require('express-session')
 const flash = require('connect-flash');
 const admin_route=express();
-
-
+const nocache = require('nocache');
+admin_route.use(nocache());
 admin_route.use(session({
     name:'admin_session',
     secret: 'your_secret_key',
